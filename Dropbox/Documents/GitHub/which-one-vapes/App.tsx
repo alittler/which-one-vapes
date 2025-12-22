@@ -171,9 +171,9 @@ const App: React.FC = () => {
             <Settings size={14} className="md:w-4 md:h-4" /> <u>A</u>dmin
           </button>
           <div className="flex-1"></div>
-          <div className="win95-inset px-2 md:px-4 flex items-center text-[8px] md:text-xs font-mono truncate max-w-[120px] md:max-w-none">
-             URL: geocities.com/Vape/{view}.html
-          </div>
+           <div className="win95-inset px-2 md:px-4 flex items-center text-[8px] md:text-xs font-mono truncate max-w-[120px] md:max-w-none">
+             URL: whichonevapes.site
+           </div>
         </div>
       </header>
 
@@ -270,11 +270,13 @@ const App: React.FC = () => {
                     <th className="border border-gray-400 p-1 md:p-2">PIC</th>
                     <th className="border border-gray-400 p-1 md:p-2 text-left">NAME</th>
                     <th className="border border-gray-400 p-1 md:p-2">%</th>
+                    <th className="border border-gray-400 p-1 md:p-2">Votes</th>
                   </tr>
                 </thead>
                 <tbody>
                   {sortedCandidates.map((candidate, idx) => {
                     const rate = getVapeRate(candidate.id);
+                    const voteCount = votes[candidate.id]?.chosenCount || 0;
                     return (
                       <tr key={candidate.id} className="hover:bg-yellow-50">
                         <td className="border border-gray-400 p-1 md:p-2 text-center font-bold">{idx + 1}</td>
@@ -285,6 +287,7 @@ const App: React.FC = () => {
                            <div className="font-bold truncate max-w-[80px] md:max-w-none">{candidate.name}</div>
                         </td>
                         <td className="border border-gray-400 p-1 md:p-2 text-center font-mono font-bold text-red-600">{rate}%</td>
+                        <td className="border border-gray-400 p-1 md:p-2 text-center font-mono font-bold">{voteCount}</td>
                       </tr>
                     );
                   })}

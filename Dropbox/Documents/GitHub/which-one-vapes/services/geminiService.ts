@@ -1,4 +1,3 @@
-
 import { VerdictResponse, Candidate } from "../types";
 import { INITIAL_CANDIDATES } from "../constants";
 
@@ -12,33 +11,37 @@ const VAPE_REASONINGS = [
   "High levels of vegetable glycerin detected in the immediate airspace.",
   "Subject possesses the distinct aura of someone who knows what a 'coil' is.",
   "Neural network identifies a 'cloud-chaser' pattern in subject's respiration.",
-  "Detected hidden stash of 'Cotton Bacon' in secondary pocket."
+  "Detected hidden stash of 'Cotton Bacon' in secondary pocket.",
 ];
 
-export const getComparativeVerdict = async (name1: string, name2: string): Promise<VerdictResponse> => {
+export const getComparativeVerdict = async (
+  name1: string,
+  name2: string
+): Promise<VerdictResponse> => {
   // Find candidates by name
-  const c1 = INITIAL_CANDIDATES.find(c => c.name === name1);
-  const c2 = INITIAL_CANDIDATES.find(c => c.name === name2);
+  const c1 = INITIAL_CANDIDATES.find((c) => c.name === name1);
+  const c2 = INITIAL_CANDIDATES.find((c) => c.name === name2);
   if (!c1 || !c2) {
     return {
       comparisonReasoning: "One or both candidates not found.",
       vapeLeader: name1,
-      vibeSummary: "Error in matchup logic."
+      vibeSummary: "Error in matchup logic.",
     };
   }
   // Pick leader by baseVapeScore
   const vapeLeader = c1.baseVapeScore > c2.baseVapeScore ? c1.name : c2.name;
-  const comparisonReasoning = VAPE_REASONINGS[Math.floor(Math.random() * VAPE_REASONINGS.length)];
+  const comparisonReasoning =
+    VAPE_REASONINGS[Math.floor(Math.random() * VAPE_REASONINGS.length)];
   const vibeSummary = [
     "Clouds, coils, and coolness.",
     "Vapor trails mark the winner.",
     "Aroma of victory lingers here.",
     "Pods, mods, and bravado clash.",
-    "Sub-ohm showdown, flavor prevails."
+    "Sub-ohm showdown, flavor prevails.",
   ][Math.floor(Math.random() * 5)];
   return {
     comparisonReasoning,
     vapeLeader,
-    vibeSummary
+    vibeSummary,
   };
 };
